@@ -6,19 +6,49 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+ruby 2.6.5
 
-* System dependencies
+* システムの依存関係
 
-* Configuration
+* コンフィグレーション
 
-* Database creation
 
-* Database initialization
+* データベースの作成
+# SubscTime DB設計
 
-* How to run the test suite
+## User table
 
-* Services (job queues, cache servers, search engines, etc.)
+|column|type|options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|
+|password|string|null: false|
+|user_image|integer|
 
-* Deployment instructions
 
-* ...
+### Association
+- has_many :products
+- belongs_to :card
+
+## Card table
+
+|column|type|options|
+|------|----|-------|
+|customer_id|string|
+|card_id|integer|
+|token|
+
+### Association
+- belongs_to :user
+
+## Product table
+|column|type|options|
+|------|----|-------|
+|user_id|integer|foreign_key: true|
+|product_name|string|null: false|
+|description|string|
+|price|integer|null: false|
+|product_image|string|
+### Association
+- belongs_to :user
+
